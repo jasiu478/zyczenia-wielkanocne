@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wielkanocne Życzenia</title>
+  <style>
+    body {
+      background: #7fc97f;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      color: #4b2e2e;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #clock {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+      z-index: 2;
+      line-height: 1.6;
+    }
+
+    .card {
+      background: #fff;
+      border: 2px solid #ffc107;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 600px;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #e29500;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
+
+    .egg {
+      font-size: 50px;
+      margin: 20px 0;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #888;
+      z-index: 2;
+    }
+
+    .flower {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      z-index: 1;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Zegar z opisem -->
+  <div id="clock"></div>
+
+  <!-- Kartka z życzeniami -->
+  <div class="card">
+    <div class="egg">🥚🐣🌷</div>
+    <h1>Wesołych Świąt Wielkanocnych!</h1>
+    <p>
+      Z okazji Świąt Wielkiej Nocy<br>
+      życzymy Ci radości, spokoju<br>
+      i czasu spędzonego z bliskimi.<br>
+      Niech ten wyjątkowy czas przyniesie<br>
+      nadzieję, uśmiech i wiele szczęścia!
+    </p>
+    <div class="egg">🌸🐰🥚</div>
+  </div>
+
+  <footer>
+    &copy; Jan Sroka 8b
+  </footer>
+
+  <!-- Skrypty -->
+  <script>
+    // Kwiaty
+    const emojis = ['🌸', '🌼', '🌺', '💮'];
+    for (let i = 0; i < 30; i++) {
+      const flower = document.createElement('div');
+      flower.className = 'flower';
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      flower.style.fontSize = (Math.random() * 20 + 20) + 'px';
+      flower.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      document.body.appendChild(flower);
+    }
+
+    // Zegar z pełną datą
+    function updateClock() {
+      const now = new Date();
+      const miesiace = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
+
+      const dzien = now.getDate();
+      const miesiac = miesiace[now.getMonth()];
+      const rok = now.getFullYear();
+      const godziny = String(now.getHours()).padStart(2, '0');
+      const minuty = String(now.getMinutes()).padStart(2, '0');
+      const sekundy = String(now.getSeconds()).padStart(2, '0');
+
+      document.getElementById('clock').innerHTML = `
+        Dzień: ${dzien} ${miesiac}<br>
+        Rok: ${rok}<br>
+        Godzina: ${godziny}:${minuty}:${sekundy}
+      `;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
